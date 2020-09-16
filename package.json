@@ -1,0 +1,16 @@
+{
+  "name": "company-chart",
+  "version": "1.0.0",
+  "description": "A company chart test project",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "Andrei Kucherov",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  }
+}
