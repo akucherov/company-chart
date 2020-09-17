@@ -42,6 +42,15 @@ let company = function Company() {
         },
 
         add: function (id, name, supervisor) {
+            if (isNaN(id) || typeof id != 'number') throw(new Error("Wrong employee ID."));
+            if (supervisor !== undefined && (isNaN(supervisor) || typeof supervisor != 'number')) throw(new Error("Wrong employee ID."));
+
+            if (Company.employees.has(id)) {
+                let old_sup = Company.employees.get(id).supervisor;
+                let empl = Company.supervisors.get(old_sup).employees.filter(e => e.id != id);
+                Company.supervisors.get(old_sup).employees = empl;
+            }
+            
             Company.employees.set(id, {name: name, supervisor: supervisor});
             if (Company.supervisors.has(supervisor)) {
                 Company.supervisors.get(supervisor).employees.push({id:id, name: name})

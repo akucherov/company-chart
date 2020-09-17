@@ -36,10 +36,15 @@ describe('A company with a new staff', function() {
 
 describe('Employees ID is a number', function() {
     let company = new Company().options({});
-    company.add(1,"Boss", undefined);
     
     it('Wrong ID exception', function(done){
-        expect(company.add("KJHKJH","Manager 1", 1)).to.throw("Wrong employee ID.");
+        expect(_ => company.add("A","Test", undefined)).to.throw();
+        expect(_ => company.add("A","Test", 1)).to.throw();
+        expect(_ => company.add("A","Test", "B")).to.throw();
+        expect(_ => company.add(undefined,"Test", 1)).to.throw();
+        expect(_ => company.add(undefined,"Test", NaN)).to.throw();
+        expect(_ => company.add(NaN,"Test", 1)).to.throw();
+        expect(_ => company.add(1,"Test", NaN)).to.throw();
         done();
     });
 });
