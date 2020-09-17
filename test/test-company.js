@@ -63,13 +63,42 @@ describe('A company staff has been updated', function() {
     });
 });
 
-describe('Working with a company chart', function() {
+describe('Working with a company chart (a new boss)', function() {
     let company = new Company().options({});
     company.add(1,"Boss", undefined);
     company.add(2,"Manager 1", 1);
     company.add(3,"Manager 2", 1);
     company.add(4,"Manager 3", 1);
     company.add(1,"New boss", undefined);
+
+    it('Size of chart', function(done){
+        expect(company.chart().length).to.equal(4);
+        done();
+    });
+});
+
+describe('Working with a company chart (headless company)', function() {
+    let company = new Company().options({});
+    company.add(1,"Boss", undefined);
+    company.add(2,"Manager 1", 1);
+    company.add(3,"Manager 2", 1);
+    company.add(4,"Manager 3", 1);
+    company.add(1,"New boss", 4);
+
+    it('Size of chart', function(done){
+        expect(company.chart().length).to.equal(0);
+        done();
+    });
+});
+
+describe('Working with a company chart (rotation)', function() {
+    let company = new Company().options({});
+    company.add(1,"Boss", undefined);
+    company.add(2,"Manager 1", 1);
+    company.add(3,"Manager 2", 1);
+    company.add(4,"Manager 3", 1);
+    company.add(1,"New boss", 4);
+    company.add(4,"Manager 3", undefined);
 
     it('Size of chart', function(done){
         expect(company.chart().length).to.equal(4);
